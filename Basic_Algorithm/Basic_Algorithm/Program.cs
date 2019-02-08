@@ -20,20 +20,26 @@ namespace Basic_Algorithm
             //    Console.Write(item + " ");
             //}
 
-            // 冒泡排序
-            ConsoleAlgorithm("冒泡排序1: ", ready_array, "bubble_sort1");
 
-            // 冒泡排序2
-            ConsoleAlgorithm("冒泡排序2: ", ready_array, "bubble_sort2");
+            int flag = HalfSearch(10000, 899);
 
-            // 冒泡排序3
-            ConsoleAlgorithm("冒泡排序3: ", ready_array, "bubble_sort3");
+            //// 冒泡排序
+            //ConsoleAlgorithm("冒泡排序1: ", ready_array, "bubble_sort1", false);
 
-            // 选择排序
-            ConsoleAlgorithm("选择排序: ", ready_array, "select_sort");
+            //// 冒泡排序2
+            //ConsoleAlgorithm("冒泡排序2: ", ready_array, "bubble_sort2", false);
 
-            // 插入排序
-            ConsoleAlgorithm("插入排序: ", ready_array, "insert_sort");
+            //// 冒泡排序3
+            //ConsoleAlgorithm("冒泡排序3: ", ready_array, "bubble_sort3", false);
+
+            //// 选择排序
+            //ConsoleAlgorithm("选择排序: ", ready_array, "select_sort", false);
+
+            //// 插入排序
+            //ConsoleAlgorithm("插入排序: ", ready_array, "insert_sort", false);
+
+            //// 希尔排序
+            //ConsoleAlgorithm("希尔排序: ", ready_array, "shell_sort", false);
 
             Console.ReadKey();
         }
@@ -43,7 +49,8 @@ namespace Basic_Algorithm
         /// </summary>
         /// <param name="name"></param>
         /// <param name="arr"></param>
-        public static void ConsoleAlgorithm(string name, int[] arr, string switch_sort)
+        /// <param name="is_show_console"></param>
+        public static void ConsoleAlgorithm(string name, int[] arr, string switch_sort, Boolean is_show_console)
         {
             int[] sort_copy = new int[arr.Length];
             arr.CopyTo(sort_copy, 0);
@@ -67,6 +74,9 @@ namespace Basic_Algorithm
                 case "insert_sort":
                     ba.InsertSort(sort_copy);
                     break;
+                case "shell_sort":
+                    ba.ShellSort(sort_copy);
+                    break;
                 default:
                     ba.BubbleSort(sort_copy);
                     break;
@@ -75,10 +85,15 @@ namespace Basic_Algorithm
             sw.Stop();
             Console.WriteLine();
             Console.WriteLine(name);
-            //foreach (var item in sort_copy)
-            //{
-            //    Console.Write(item + " ");
-            //}
+
+            if(is_show_console)
+            {
+                foreach (var item in sort_copy)
+                {
+                    Console.Write(item + " ");
+                }
+            }
+            
             Console.WriteLine();
             Console.WriteLine("运行时间:{0}", sw.ElapsedMilliseconds);
             Console.WriteLine("=================");
@@ -130,6 +145,53 @@ namespace Basic_Algorithm
                 }                    
             }
             return temp;
+        }
+
+        /// <summary>
+        /// 拆半查找
+        /// </summary>
+        /// <param name="array_length"></param>
+        /// <param name="find_key"></param>
+        /// <returns></returns>
+        public static int HalfSearch(int array_length, int find_key)
+        {
+            //初始化有序数组
+            int[] temp = new int[array_length];
+            for(int i = 0; i < array_length; i++)
+            {
+                temp[i] = i + 1;
+            }
+
+            int low = 0;
+            int high = array_length - 1;
+            int count = 0;
+            int flag = 0;
+            while(low<= high)
+            {
+                count++;
+                int mid = (low + high) / 2;
+                Console.WriteLine("第{0}次查找,value值为:{4}, index值为:{1}, low:{2}, high:{3}", count, mid, low, high, temp[mid]);
+                if (find_key == temp[mid])
+                {
+                    flag = 1;
+                    
+                    break;
+                }
+                if (find_key > temp[mid])
+                {
+                    low = mid + 1;
+                }
+                if (find_key < temp[mid])
+                {
+                    high = mid - 1;
+                }
+               
+            }
+            if (flag == 1)
+            {
+                return flag;
+            }
+            return -1;
         }
     }
 }

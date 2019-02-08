@@ -144,6 +144,33 @@ namespace Basic_Algorithm
             return arr;
         }
 
+        /// <summary>
+        /// 希尔排序
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
+        public int[] ShellSort(int[] arr)
+        {
+            int array_length = arr.Length;
+            int temp = 0;
+            while (array_length >= 1)
+            {
+                for (int i = array_length; i < arr.Length; i++)
+                {
+                    for (int j = i; j >= array_length && arr[j] < arr[j - array_length]; j -= array_length)
+                    {
+                        temp = arr[j];
+                        arr[j] = arr[j - array_length];
+                        arr[j - array_length] = temp;
+
+                    }
+                }
+                array_length /= 30000;
+            }
+
+            return arr;
+        }
+
 
     }
 }
