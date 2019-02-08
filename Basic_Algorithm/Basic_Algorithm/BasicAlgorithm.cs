@@ -145,27 +145,27 @@ namespace Basic_Algorithm
         }
 
         /// <summary>
-        /// 希尔排序
+        /// 希尔排序，插入排序的威力加强版
         /// </summary>
         /// <param name="arr"></param>
         /// <returns></returns>
         public int[] ShellSort(int[] arr)
         {
             int array_length = arr.Length;
-            int temp = 0;
-            while (array_length >= 1)
+            int gap = array_length / 2;
+            while (1<=gap)
             {
-                for (int i = array_length; i < arr.Length; i++)
+                for (int i = gap; i < array_length; i++)
                 {
-                    for (int j = i; j >= array_length && arr[j] < arr[j - array_length]; j -= array_length)
+                    int j = 0;
+                    int temp = arr[i];
+                    for (j = i - gap; j >= 0 && temp < arr[j]; j = j - gap)
                     {
-                        temp = arr[j];
-                        arr[j] = arr[j - array_length];
-                        arr[j - array_length] = temp;
-
+                        arr[j + gap] = arr[j];
                     }
+                    arr[j + gap] = temp;
                 }
-                array_length /= 30000;
+                gap /= 2;
             }
 
             return arr;

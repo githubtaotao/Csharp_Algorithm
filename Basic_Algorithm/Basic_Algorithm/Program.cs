@@ -8,7 +8,7 @@ namespace Basic_Algorithm
         static void Main(string[] args)
         {
             // 生成随机数组
-            int[] ready_array = GetRandomArray(10,false, 0, 10);
+            int[] ready_array = GetRandomArray(4000,false, 0, 4000);
             if(ready_array is null)
             {
                 Console.WriteLine("随机数生成错误, 最大随机数与数组长度不符!");
@@ -20,26 +20,26 @@ namespace Basic_Algorithm
             //    Console.Write(item + " ");
             //}
 
+            // 拆半查询测试
+            // int flag = HalfSearch(1000000, 46587);
 
-            int flag = HalfSearch(10000, 899);
+            // 冒泡排序
+            ConsoleAlgorithm("冒泡排序1: ", ready_array, "bubble_sort1", false);
 
-            //// 冒泡排序
-            //ConsoleAlgorithm("冒泡排序1: ", ready_array, "bubble_sort1", false);
+            // 冒泡排序2
+            ConsoleAlgorithm("冒泡排序2: ", ready_array, "bubble_sort2", false);
 
-            //// 冒泡排序2
-            //ConsoleAlgorithm("冒泡排序2: ", ready_array, "bubble_sort2", false);
+            // 冒泡排序3
+            ConsoleAlgorithm("冒泡排序3: ", ready_array, "bubble_sort3", false);
 
-            //// 冒泡排序3
-            //ConsoleAlgorithm("冒泡排序3: ", ready_array, "bubble_sort3", false);
+            // 选择排序
+            ConsoleAlgorithm("选择排序: ", ready_array, "select_sort", false);
 
-            //// 选择排序
-            //ConsoleAlgorithm("选择排序: ", ready_array, "select_sort", false);
+            // 插入排序
+            ConsoleAlgorithm("插入排序: ", ready_array, "insert_sort", false);
 
-            //// 插入排序
-            //ConsoleAlgorithm("插入排序: ", ready_array, "insert_sort", false);
-
-            //// 希尔排序
-            //ConsoleAlgorithm("希尔排序: ", ready_array, "shell_sort", false);
+            // 希尔排序
+            ConsoleAlgorithm("希尔排序: ", ready_array, "shell_sort", false);
 
             Console.ReadKey();
         }
@@ -174,7 +174,6 @@ namespace Basic_Algorithm
                 if (find_key == temp[mid])
                 {
                     flag = 1;
-                    
                     break;
                 }
                 if (find_key > temp[mid])
@@ -185,7 +184,6 @@ namespace Basic_Algorithm
                 {
                     high = mid - 1;
                 }
-               
             }
             if (flag == 1)
             {
