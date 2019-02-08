@@ -8,7 +8,7 @@ namespace Basic_Algorithm
         static void Main(string[] args)
         {
             // 生成随机数组
-            int[] ready_array = GetRandomArray(10000,false, 0, 10000);
+            int[] ready_array = GetRandomArray(10,false, 0, 10);
             if(ready_array is null)
             {
                 Console.WriteLine("随机数生成错误, 最大随机数与数组长度不符!");
@@ -19,79 +19,71 @@ namespace Basic_Algorithm
             //{
             //    Console.Write(item + " ");
             //}
+
             BasicAlgorithm ba = new BasicAlgorithm();
 
             // 冒泡排序
-            int[] bubble_sort_copy = new int[ready_array.Length];
-            ready_array.CopyTo(bubble_sort_copy, 0);
+            ConsoleAlgorithm("冒泡排序1: ", ready_array, "bubble_sort1");
+
+            // 冒泡排序2
+            ConsoleAlgorithm("冒泡排序2: ", ready_array, "bubble_sort2");
+
+            // 冒泡排序3
+            ConsoleAlgorithm("冒泡排序3: ", ready_array, "bubble_sort3");
+
+            // 选择排序
+            ConsoleAlgorithm("选择排序: ", ready_array, "select_sort");
+
+            // 插入排序
+            ConsoleAlgorithm("插入排序: ", ready_array, "insert_sort");
+
+            Console.ReadKey();
+        }
+
+        /// <summary>
+        /// 输出排序算法结果
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="arr"></param>
+        public static void ConsoleAlgorithm(string name, int[] arr, string switch_sort)
+        {
+            int[] sort_copy = new int[arr.Length];
+            arr.CopyTo(sort_copy, 0);
             Stopwatch sw = new Stopwatch();
             sw.Start();
-            ba.BubbleSort(bubble_sort_copy);
+            BasicAlgorithm ba = new BasicAlgorithm();
+            switch (switch_sort)
+            {
+                case "bubble_sort1":
+                    ba.BubbleSort(sort_copy);
+                    break;
+                case "bubble_sort2":
+                    ba.BubbleSort2(sort_copy);
+                    break;
+                case "bubble_sort3":
+                    ba.BubbleSort3(sort_copy);
+                    break;
+                case "select_sort":
+                    ba.SelectSort(sort_copy);
+                    break;
+                case "insert_sort":
+                    ba.InsertSort(sort_copy);
+                    break;
+                default:
+                    ba.BubbleSort(sort_copy);
+                    break;
+            }
+
             sw.Stop();
             Console.WriteLine();
-            Console.WriteLine("冒泡排序: ");
-            //foreach (var item in bubble_sort_copy)
+            Console.WriteLine(name);
+            //foreach (var item in sort_copy)
             //{
             //    Console.Write(item + " ");
             //}
             Console.WriteLine();
             Console.WriteLine("运行时间:{0}", sw.ElapsedMilliseconds);
             Console.WriteLine("=================");
-
-
-            // 冒泡排序2
-            int[] bubble_sort2_copy = new int[ready_array.Length];
-            ready_array.CopyTo(bubble_sort2_copy, 0);
-            Stopwatch sw2 = new Stopwatch();
-            sw2.Start();
-            ba.BubbleSort2(bubble_sort2_copy);
-            sw2.Stop();
-            Console.WriteLine();
-            Console.WriteLine("冒泡排序2: ");
-            //foreach (var item in bubble_sort2_copy)
-            //{
-            //    Console.Write(item + " ");
-            //}
-            Console.WriteLine();
-            Console.WriteLine("运行时间:{0}", sw2.ElapsedMilliseconds);
-            Console.WriteLine("=================");
-
-            // 冒泡排序3
-            int[] bubble_sort3_copy = new int[ready_array.Length];
-            ready_array.CopyTo(bubble_sort3_copy, 0);
-            Stopwatch sw3 = new Stopwatch();
-            sw3.Start();
-            ba.BubbleSort3(bubble_sort3_copy);
-            sw3.Stop();
-            Console.WriteLine();
-            Console.WriteLine("冒泡排序3: ");
-            //foreach (var item in bubble_sort2_copy)
-            //{
-            //    Console.Write(item + " ");
-            //}
-            Console.WriteLine();
-            Console.WriteLine("运行时间:{0}", sw3.ElapsedMilliseconds);
-            Console.WriteLine("=================");
-
-
-            // 选择排序
-            int[] select_sort_copy = new int[ready_array.Length];
-            ready_array.CopyTo(select_sort_copy, 0);
-            Stopwatch sw4 = new Stopwatch();
-            sw4.Start();
-            ba.SelectSort(select_sort_copy);
-            sw4.Stop();
-            Console.WriteLine();
-            Console.WriteLine("选择排序: ");
-            foreach (var item in bubble_sort2_copy)
-            {
-                Console.Write(item + " ");
-            }
-            Console.WriteLine();
-            Console.WriteLine("运行时间:{0}", sw4.ElapsedMilliseconds);
-            Console.WriteLine("=================");
-
-            Console.ReadKey();
         }
 
         /// <summary>

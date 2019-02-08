@@ -121,6 +121,29 @@ namespace Basic_Algorithm
             return arr;
         }
 
+        /// <summary>
+        /// 插入排序
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
+        public int[] InsertSort(int[] arr)
+        {
+            int array_length = arr.Length;
+            for(int i = 1; i < array_length; i++)
+            {
+                int key = arr[i];
+                int j = i - 1;
+                while (j >= 0 && arr[j] > key)
+                {
+                    arr[j + 1] = arr[j];
+                    j--;
+                }
+                arr[j + 1] = key;
+            }
+
+            return arr;
+        }
+
 
     }
 }
