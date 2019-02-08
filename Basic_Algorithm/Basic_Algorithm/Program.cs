@@ -20,8 +20,6 @@ namespace Basic_Algorithm
             //    Console.Write(item + " ");
             //}
 
-            BasicAlgorithm ba = new BasicAlgorithm();
-
             // 冒泡排序
             ConsoleAlgorithm("冒泡排序1: ", ready_array, "bubble_sort1");
 
