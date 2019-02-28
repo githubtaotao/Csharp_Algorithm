@@ -171,6 +171,42 @@ namespace Basic_Algorithm
             return arr;
         }
 
+        /// <summary>
+        /// 快速排序
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <param name="low"></param>
+        /// <param name="high"></param>
+        public int[] Quicksort(int[] arr, int low, int high)
+        {
+            if (low >= high)
+            {
+                return arr;
+            }
+            int first = low, last = high;
+            //此时a[low]被保存到key，所以元素a[low]可以当作是一个空位，用于保存数据，之后每赋值一次，也会有一个位置空出来，直到last==first，此时a[last]==a[first]=key
+            int key = arr[low];
+            while (first < last)
+            {
+                while (first < last && arr[last] >= key)
+                {
+                    last--;
+                }
+                arr[first] = arr[last];
+                while (first < last && arr[first] <= key)
+                {
+                    first++;
+                }
+                arr[last] = arr[first];
+            }
+            arr[first] = key;
+            //递归排序数组左边的元素
+            Quicksort(arr, low, first - 1);
+            //递归排序右边的元素
+            Quicksort(arr, first + 1, high);
+
+            return arr;
+        }
 
     }
 }

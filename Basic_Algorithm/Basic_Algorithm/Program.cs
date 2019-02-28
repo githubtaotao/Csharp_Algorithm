@@ -8,7 +8,7 @@ namespace Basic_Algorithm
         static void Main(string[] args)
         {
             // 生成随机数组
-            int[] ready_array = GetRandomArray(4000,false, 0, 4000);
+            int[] ready_array = GetRandomArray(90000,false, 0, 90000);
             if(ready_array is null)
             {
                 Console.WriteLine("随机数生成错误, 最大随机数与数组长度不符!");
@@ -40,6 +40,9 @@ namespace Basic_Algorithm
 
             // 希尔排序
             ConsoleAlgorithm("希尔排序: ", ready_array, "shell_sort", false);
+
+            // 快速排序
+            ConsoleAlgorithm("快速排序: ", ready_array, "quick_sort", false);
 
             Console.ReadKey();
         }
@@ -76,6 +79,9 @@ namespace Basic_Algorithm
                     break;
                 case "shell_sort":
                     ba.ShellSort(sort_copy);
+                    break;
+                case "quick_sort":
+                    ba.Quicksort(sort_copy,0, sort_copy.Length-1);
                     break;
                 default:
                     ba.BubbleSort(sort_copy);
